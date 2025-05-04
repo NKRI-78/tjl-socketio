@@ -1,7 +1,5 @@
 require("dotenv").config()
 
-const { uuidv7 } = require('uuidv7')
-
 const { createServer } = require('http')
 const { Server } = require("socket.io")
 
@@ -9,9 +7,6 @@ const express = require('express')
 const moment = require('moment')
 
 const jwt = require('jsonwebtoken')
-const Chat = require("./models/Chat")
-
-const User = require("./models/ApplyJob")
 
 const app = express()
 
