@@ -30,7 +30,7 @@ function setUserId(socket) {
 
     jwt.verify(authorization, process.env.SECRET_KEY, function (err, user) {
         if (!err) {
-            socket.join(user.uid);
+            socket.join(user.id);
         }
     })
 }
