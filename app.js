@@ -23,9 +23,9 @@ function setUserId(socket) {
 
     jwt.verify(authorization, process.env.SECRET_KEY, async function (err, user) {
         if (!err) {
-            console.log(`User ${user.uid} joined`)
+            console.log(`User ${user.id} joined`)
 
-            socket.join(user.uid);
+            socket.join(user.id);
         }
     })
 }
