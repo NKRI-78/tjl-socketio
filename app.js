@@ -42,6 +42,10 @@ io.on('connection', (socket) => {
         socket.leave(user_id);
     });
 
+    socket.on('apply_job_result', async(message) => {
+        socket.emit('apply_job_result', message);
+    })
+
     socket.on('apply_job', async (message) => {
         const { job_id } = message
 
