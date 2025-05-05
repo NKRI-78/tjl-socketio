@@ -43,6 +43,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('apply_job_result', async(message) => {
+        console.log("=== APPLY JOB RESULT ===")
         socket.emit('apply_job_result', message);
     })
 
