@@ -22,7 +22,7 @@ const io = new Server(server, {
 function setUserId(socket) {
     let handshake = socket.handshake;
 
-    var authorization = handshake.headers.authorization;
+    var authorization = handshake.auth.token;
 
     if (authorization == undefined) return;
 
