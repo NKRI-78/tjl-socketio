@@ -44,7 +44,7 @@ io.on('connection', (socket) => {
 
     socket.on('apply_job_result', async(message) => {
         console.log("=== APPLY JOB RESULT ===")
-        socket.emit('apply_job_result', message);
+        io.emit('apply_job_result', message);
     })
 
     socket.on('apply_job', async (message) => {
@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
             job_id: job_id
         };
 
-        socket.emit('apply_job_result', payload);
+        io.emit('apply_job_result', payload);
     });
 });
   
