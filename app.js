@@ -61,7 +61,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('notification_apply_job_badge_count_result', async(message) => {
-        console.log('=== NOTIFICATION APPLY JOB BADGE COUNT ===');
+        console.log('=== NOTIFICATION APPLY JOB BADGE COUNT RESULT ===');
         io.emit('notification_apply_job_badge_count_result', message);
     });
 
