@@ -43,12 +43,14 @@ io.on('connection', (socket) => {
     });
 
     socket.on('apply_job_result', async(message) => {
-        console.log("=== APPLY JOB RESULT ===")
+        console.log('=== APPLY JOB RESULT ===');
         io.emit('apply_job_result', message);
-    })
+    });
 
     socket.on('apply_job', async (message) => {
-        const { job_id } = message
+        console.log('=== APPLY JOB ===');
+
+        const { job_id } = message;
 
         const payload = {
             type: 'apply_job',
@@ -57,6 +59,25 @@ io.on('connection', (socket) => {
 
         io.emit('apply_job_result', payload);
     });
+
+    socket.on('notification_apply_job_badge_count_result', async(message) => {
+        console.log('=== NOTIFICATION APPLY JOB BADGE COUNT ===');
+        io.emit('notification_apply_job_badge_count_result', message);
+    });
+
+    socket.on("notification_apply_job_badge_count", async (message) => {
+        console.log('=== NOTIFICATION APPLY JOB BADGE COUNT ===');
+
+        const { job_id } = message;
+
+        const payload = {
+            type: "notification_apply_job_badge_count",
+            job_id: job_id
+        }
+
+        io.emit("notification_apply_job_badge_count_result", payload);
+    });
+
 });
   
 server.listen(process.env.PORT, function () {
