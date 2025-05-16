@@ -85,11 +85,8 @@ io.on('connection', (socket) => {
     socket.on('notification_candidate_passes', async (message) => {
         console.log('=== NOTIFICATION CANDIDATE PASSES ===')
 
-        const { job_id } = message; 
-
          const payload = {
             type: "notification_candidate_passes",
-            job_id: job_id
         }
 
         io.emit("notification_candidate_passes_result", payload);
