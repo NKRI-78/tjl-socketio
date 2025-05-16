@@ -4,7 +4,6 @@ const { createServer } = require('http')
 const { Server } = require("socket.io")
 
 const express = require('express')
-const moment = require('moment')
 
 const jwt = require('jsonwebtoken')
 
@@ -35,15 +34,15 @@ io.on('connection', (socket) => {
     console.log(`[Socket.IO] Client with IP ${clientIp} has connected`);
 
     setUserId(socket)
-    
+
     socket.on('leave', async (message) => {
         const { user_id } = message;
 
         socket.leave(user_id);
     });
 
+    // LISTEN APPLY JOB RESULT
     socket.on('apply_job_result', async(message) => {
-        console.log('=== APPLY JOB RESULT ===');
         io.emit('apply_job_result', message);
     });
 
@@ -60,8 +59,8 @@ io.on('connection', (socket) => {
         io.emit('apply_job_result', payload);
     });
 
+    // LISTEN NOTIFICATION APPLY JOB BADGE COUNT RESULT
     socket.on('notification_apply_job_badge_count_result', async(message) => {
-        console.log('=== NOTIFICATION APPLY JOB BADGE COUNT RESULT ===');
         io.emit('notification_apply_job_badge_count_result', message);
     });
 
@@ -77,6 +76,24 @@ io.on('connection', (socket) => {
 
         io.emit("notification_apply_job_badge_count_result", payload);
     });
+
+    // LISTEN NOTIFICATION CANDIDATE PASSES RESULT
+    socket.on('notification_candidate_passes_result', async (message) => {
+        io.emit('notification_apply_job_badge_count_result', message);
+    });
+
+    socket.on('notification_candidate_passes', async (message) => {
+        console.log('=== NOTIFICATION CANDIDATE PASSES ===')
+
+        const { job_id } = message; 
+
+         const payload = {
+            type: "notification_candidate_passes",
+            job_id: job_id
+        }
+
+        io.emit("notification_candidate_passes_result", payload);
+    })
 
 });
   
